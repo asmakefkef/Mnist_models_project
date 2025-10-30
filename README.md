@@ -11,51 +11,47 @@ The goal is to compare their performance in terms of **accuracy**, **loss**, and
 ---
 
 ## Dataset and Preprocessing
-- **Dataset:** MNIST handwritten digits dataset (60,000 training images, 10,000 test images, 28x28 grayscale).
+- **Dataset:** MNIST handwritten digits dataset (60,000 training images, 10,000 test images, 28x28 grayscale).  
 - **Preprocessing steps:**
-  - Normalize pixel values to range [0,1].
+  - Normalize pixel values to the range [0,1].
   - Reshape images according to model requirements:
-    - CNN: (28,28,1)
-    - LSTM: (28,28)
+    - CNN: `(28,28,1)`
+    - LSTM: `(28,28)`
   - Convert labels to one-hot encoding.
 
----
 
 ## Project Structure
 
 Mnist_models_project/
 ├─ Src/
-│ ├─ main.py # Main script to train and compare models
-│ ├─ models/
-│ │ ├─ cnn_model.py # CNN architecture and training function
-│ │ └─ lstm_model.py # LSTM architecture and training function
-│ └─ utils/
-│ ├─ data_preprocessing.py # Functions for loading and preprocessing MNIST
-│ └─ plot_utils.py # Functions to plot and save Accuracy/Loss comparison
+│  ├─ main.py                # Main script to train and compare models
+│  ├─ models/
+│  │  ├─ cnn_model.py        # CNN architecture and training function
+│  │  └─ lstm_model.py       # LSTM architecture and training function
+│  └─ utils/
+│     ├─ data_preprocessing.py # Functions for loading and preprocessing MNIST
+│     └─ plot_utils.py         # Functions to plot and save Accuracy/Loss comparison
 ├─ Results/
-│ ├─ Accuracy_Comparison.png # Plot comparing CNN vs LSTM Accuracy
-│ └─ Loss_Comparison.png # Plot comparing CNN vs LSTM Loss
+│  ├─ Accuracy_Comparison.png   # Plot comparing CNN vs LSTM Accuracy
+│  └─ Loss_Comparison.png       # Plot comparing CNN vs LSTM Loss
+├─ README.md
 └─ requirements.txt
 
 
----
-
 ## Training and Evaluation
+Both models were trained for **5 epochs** with a **batch size of 128** on **CPU** in Colab.  
 
-Both models were trained for **5 epochs** with a **batch size of 128**.
-**Training times on Colab:**
-- CNN: ~340 seconds
-- LSTM: ~185 seconds
+**Training times:**  
+- CNN: ~340 seconds  
+- LSTM: ~185 seconds  
 
-**Performance:**
-- CNN achieved slightly higher accuracy and lower loss on the validation set.
-- LSTM performed well but required less training time.
+**Performance:**  
+- CNN achieved slightly higher accuracy and lower loss on the validation set.  
+- LSTM performed well but required less training time.  
 
-**Plots saved in `Results/` folder:**
-- `Accuracy_Comparison.png` → shows training & validation accuracy for both models.
+**Plots saved in `Results/` folder:**  
+- `Accuracy_Comparison.png` → shows training & validation accuracy for both models.  
 - `Loss_Comparison.png` → shows training & validation loss for both models.
-
----
 
 ## How to Run
 
@@ -63,31 +59,30 @@ Both models were trained for **5 epochs** with a **batch size of 128**.
 
 ```bash
 pip install -r requirements.txt
+````
 
+2. Run the main script:
 
-Run the main script:
-
+```bash
 python Src/main.py
+```
 
+This will train both models, display the plots, and save them in the `Results/` folder.
 
-This will train both models, display the plots, and save them in the Results/ folder.
+---
 
-Discussion
+## Discussion
 
-CNN vs LSTM:
+**CNN vs LSTM:**
 
-CNN is more efficient for image classification due to convolutional layers that capture spatial patterns.
+* CNN is more efficient for image classification due to convolutional layers that capture spatial patterns.
+* LSTM can handle sequences and temporal dependencies but is less efficient for static image data like MNIST.
+* Training time: CNN took longer due to convolution operations, while LSTM was faster.
 
-LSTM can handle sequences and temporal dependencies but is less efficient for static image data like MNIST.
+**Improvements / Extensions:**
 
-Training time: CNN took longer due to convolution operations, while LSTM was faster.
-
-Improvements / Extensions:
-
-Try deeper CNN or stacked LSTM layers.
-
-Experiment with Transformers for image classification.
-
-Apply data augmentation to improve generalization.
-
-Tune hyperparameters (learning rate, batch size, number of epochs).
+* Try deeper CNN or stacked LSTM layers.
+* Experiment with Transformers for image classification.
+* Apply data augmentation to improve generalization.
+* Tune hyperparameters (learning rate, batch size, number of epochs).
+```
